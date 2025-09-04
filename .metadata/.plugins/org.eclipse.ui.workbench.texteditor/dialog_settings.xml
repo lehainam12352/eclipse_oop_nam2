@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item key="hasShownOverlayPopupBefore" value="true"/>
+	<section name="java.lang.Class">
+		<item key="replaceBarOpen" value="true"/>
+		<list key="replacehistory">
+			<item value="department"/>
+			<item value="credit"/>
+			<item value="title"/>
+			<item value="id"/>
+			<item value="courseid"/>
+		</list>
+		<list key="findhistory">
+			<item value="Department"/>
+			<item value="deparment"/>
+			<item value="Credits"/>
+			<item value="title"/>
+			<item value="courseid"/>
+		</list>
+	</section>
+</section>

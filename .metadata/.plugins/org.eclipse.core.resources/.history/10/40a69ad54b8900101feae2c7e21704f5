@@ -1,0 +1,66 @@
+package iuh.fit.cs;
+/**
+ * 
+ * This class represents a rectangle  
+ *
+ * @author LENOVO
+ * @version 1.0
+ * @since Sep 4, 2025
+ */
+public class Course {
+	private String CourseID;
+	private String Title;
+	private int Credits;
+	private String Department;
+
+	public Course() {
+	}
+
+	public Course(String courseID, String title,String department, int credits) {
+		if (CourseID.length() <3 || CourseID.matches("[a-zA-z0-9]") ) {
+			throw new IllegalArgumentException("CourseID cannot be less than 3 characters and must be alphanumeric");
+		}
+		if(Title.isEmpty())
+			throw new IllegalArgumentException("CourseName cannot be empty");
+		if(Credits<=0)
+			throw new IllegalArgumentException("Credits must be greater than 0");
+		this.CourseID = courseID;
+		this.Title = title;
+		this.Credits = credits;
+		this.Department = department;
+	}
+
+	public String getCourseID() {
+		return CourseID;
+	}
+
+	public void setCourseID(String courseID) {
+		CourseID = courseID;
+	}
+
+	public String getTitle() {
+		return Title;
+	}
+
+	public void setTitle(String title) {
+		Title = title;
+	}
+
+	public int getCredits() {
+		return Credits;
+	}
+
+	public void setCredits(int credits) {
+		Credits = credits;
+	}
+
+	public String getDepartment() {
+		return Department;
+	}
+
+	public void setDepartment(String department) {
+		Department = department;
+	}
+	
+	
+}

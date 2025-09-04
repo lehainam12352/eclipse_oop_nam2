@@ -1,0 +1,5 @@
+package iuh.fit.cs;
+
+public class CourseList extends Course {
+
+}

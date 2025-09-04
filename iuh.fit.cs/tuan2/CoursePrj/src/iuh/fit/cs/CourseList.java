@@ -1,0 +1,171 @@
+package iuh.fit.cs; 
+import java.util.*;
+public class CourseList { 
+	private int count; 
+	private Course[] courses; 
+	public CourseList(int size) 
+	{ 
+		if (size <= 0) 
+		{ throw new IllegalArgumentException("Size must be greater than 0"); } 
+		courses = new Course[size]; count=0; 
+	}
+	public boolean addCourse(Course course) throws Exception 
+	{
+		for(int i=0;i<count;i++) 
+		{ 
+			if(courses[i].getCourseId().equals(course.getCourseId())) 
+			{ 
+				throw new Exception("Ma khoa hoc da ton tai!"); 
+			}
+		}
+		courses[count++]=course; 
+		return true; 
+	} 
+	public boolean exists(Course course) 
+	{ 
+		for(int i=0;i<count;i++)
+		{ 
+			if(courses[i].getCourseId().equals(course.getCourseId()))
+				return true; 
+		}
+		return false; 
+	}
+	public String findDepartmentWithMostCourse() 
+	{ 
+		Map<String, Integer> map = new HashMap<>();
+	    for (int i = 0; i < count; i++) {
+	        String dept = courses[i].getDepartment();
+	        map.put(dept, map.getOrDefault(dept, 0) + 1);
+	    }
+
+	    String maxDept = "";
+	    int maxCount = -1;
+	    for (Map.Entry<String, Integer> entry : map.entrySet()) {
+	        if (entry.getValue() > maxCount) {
+	            maxCount = entry.getValue();
+	            maxDept = entry.getKey();
+	        }
+	    }
+	    return maxDept;
+	} 
+	public Course[] findMaxCreditCourse() 
+	{ 
+		Course max=courses[0]; 
+		for(int i=1;i<count;i++) 
+		{ 
+			if(max.getCredit()<courses[i].getCredit()) 
+			{ 
+				max=courses[i]; 
+			} 
+		} int dem=0; 
+		for(int i=0;i<count;i++) 
+		{ 
+			if(courses[i].getCredit()==max.getCredit()) 
+			{ 
+				dem++; 
+			}
+		} 
+		Course[] a= new Course[dem]; int k=0; 
+		for(int i=0;i<count;i++)
+		{ 
+			if(courses[i].getCredit()==max.getCredit()) 
+			{ 
+				a[k++]=courses[i]; 
+			} 
+		} 
+		return a; 
+	} 
+	public boolean removeCourse(String s) throws Exception 
+	{ 
+		if(count <=0) return false; 
+		for(int i=0;i<count;i++) 
+		{ 
+			if(courses[i].getCourseId().equals(s)) 
+			{ 
+				for(int j=i;j<count-1;j++) 
+				{ 
+					courses[j]=courses[j+1]; 
+				} count--; 
+				return true; 
+			} 
+		} 
+		throw new Exception("Khong ton tai"); 
+	}
+	public Course[] searchCourse(String s) 
+	{ 
+		int dem=0; 
+		for (int i = 0; i < count; i++) 
+		{
+			if (courses[i].getTitle().equalsIgnoreCase(s)) 
+			{ 
+				dem++; 
+			} 
+		}
+		Course[] a=new Course[dem]; 
+		int k=0;
+		for(int i=0;i<count;i++) 
+		{ 
+			if(courses[i].getTitle().equals(s)) 
+			{ 
+				a[k++]=courses[i]; 
+			} 
+		} 
+		return a; 
+	} 
+	public Course[] searchCourseByDepartment(String s) 
+	{ 
+		int dem=0,k=0; for (int i = 0; i < count; i++) 
+		{ 
+			if (courses[i].getDepartment().equalsIgnoreCase(s)) 
+			{ 
+				dem++; 
+			} 
+		} 
+		Course[] a= new Course[dem]; 
+		for(int i=0;i<count;i++) 
+		{ 
+			if(courses[i].getDepartment().equals(s)) 
+			{ 
+				a[k++]=courses[i]; 
+			} 
+		} 
+		return a; 
+	} 
+	public Course SearchCourseById(String s) 
+	{ 
+		Course a= null; 
+		for(int i=0;i<count;i++) 
+		{ 
+			if(courses[i].getCourseId().equals(s)) 
+			{ 
+				a=courses[i];
+				break; 
+			} 
+		} 
+		return a; 
+	} 
+	public Course[] sortCourse() 
+	{ 
+		Course[] a= new Course[count]; 
+		for(int i=0;i<count;i++) 
+		{ 
+			a[i]=courses[i]; 
+		} 
+		for(int i=0;i<count-1;i++)
+		{ 
+			for(int j=0;j<count-i-1;j++) 
+			{ 
+				if(a[j].getCourseId().compareTo(a[j+1].getCourseId())>0) 
+				{ 
+					Course t=a[j]; a[j]=a[j+1]; a[j+1]=t; 
+				} 
+			} 
+		} 
+		return a; 
+	} 
+	public Course[] getCourse() 
+	{
+		return Arrays.copyOf(courses, count);  
+	}
+
+}
